@@ -24,7 +24,13 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    func timerTick() {
+    @objc func timerTick() {
+        secondsLeft -= 1
+        updateLabel()
+        
+        if secondsLeft <= 0 {
+            timerEnd()
+        }
         
     }
     
@@ -48,7 +54,11 @@ class ViewController: UIViewController {
         
         if timer == nil {
             
-          //  timer = Timer.scheduledTimer(timeInterval: 1, invocation: self, repeats: <#T##Bool#>)
+            timer = Timer.scheduledTimer(timeInterval: <#T##TimeInterval#>, target: <#T##Any#>, selector: <#T##Selector#>, userInfo: <#T##Any?#>, repeats: <#T##Bool#>)
+            
+            endDate = Date().addingTimeInterval(secondsLeft)
+            
+            updateLabel()
         }
     }
     
